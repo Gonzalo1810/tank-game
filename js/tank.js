@@ -55,14 +55,14 @@ function NewTank(x,y, imageP){
 		},
 
 		physicsInfo: {
-			density: 0.5,
+			density: 1.5,
 			fixedRotation: true,
 			friction: 20,			
 			linearDamping: 20,
-            angularDamping: 50,
+            angularDamping: 80,
 			user_data: tank,
 			type: b2Body.b2_dynamicBody,
-			restitution: 0.0
+			restitution: 0.5
 		},
 
 		body: null,
@@ -74,6 +74,7 @@ function NewTank(x,y, imageP){
 				this.position.x / scale, this.position.y / scale,
 				this.width, this.height, this.physicsInfo);
 			
+            this.body.SetFixedRotation(true);
 
 			this.body.SetUserData(this);
 		},

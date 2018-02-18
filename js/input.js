@@ -7,6 +7,7 @@ var KEY_RIGHT = 39, KEY_D = 68;
 var KEY_DOWN  = 40, KEY_S = 83;
 var KEY_PAUSE = 19, KEY_P = 80;
 var KEY_SPACE = 32, KEY_ENTER = 13;
+var KEY_PLUS= 43;
 
 var input = {
     mouse: { x: 0, y: 0 },
