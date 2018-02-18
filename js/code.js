@@ -17,6 +17,7 @@ var timer = null;
 var victory = false;
 var extraTime = false;
 
+//Variables de las imagenes
 var tankImg, tankImg2, bulletImg, rockImg, floorImg;
 var greenBarImg, blueBarImg, healthImg, borderImg;
 var circleImg;
@@ -24,6 +25,7 @@ var endImg, redImg;
 var tank, tank2;
 var planeImg;
 
+//Arrays de conjuntos de sprites
 var bullets = [];
 var bullets2 = [];
 var rocks = [];
@@ -46,6 +48,7 @@ var sounds = {
     hit: null
 }
 
+//Inicializacion de variables, sonidos e imagenes
 function Init ()
 {
     // preparamos la variable para el refresco de la pantalla
@@ -115,6 +118,7 @@ function Init ()
     }
 }
 
+//Inicia el juego
 function Start()
 {
         // setup keyboard events
@@ -135,6 +139,7 @@ function Start()
         //startTimer(timer, document.querySelector('#time'));
 }
 
+//Recomienza la partida
 function RestartGame()
 {
     victory = false;
@@ -145,6 +150,7 @@ function RestartGame()
     restart();
 }
 
+//Reinicia el nivel
 function restart()
 {
         extraTime = false;
@@ -161,6 +167,7 @@ function restart()
     
 }
 
+//Es llamado continuamente
 function Loop ()
 {
     requestAnimationFrame(Loop);
@@ -197,6 +204,7 @@ function Loop ()
     Draw();
 }
 
+//Refresca todos los elementos del juego
 function Update ()
 {
     input.update();
@@ -269,6 +277,7 @@ function Update ()
     
 }
 
+//Inicializa las rocas en su posicion
 function StartRocks()
 {
     var rock1 = NewRock(150,150, 0.2,0.2);
@@ -307,6 +316,7 @@ function StartRocks()
     
 }
 
+//Recoge las teclas tocadas
 function UpdateInput()
 {
 
@@ -372,6 +382,7 @@ function UpdateInput()
     }
 }
 
+//Checkea el tiempo que queda. Si es 0 gana el jugador con mas vida, sino comienza la prorroga
 function CheckTime()
 {
     if(timer <= 0)
@@ -399,6 +410,7 @@ function CheckTime()
     }
 }
 
+//Ckeckea la salud de ambos jugadores y reinicia el nivel si es necesario
 function CheckHealth()
 {
     if(tank.health <= 0)
@@ -439,6 +451,7 @@ function CheckHealth()
     }
 }
 
+//Checkea la victoria de ambos jugadores
 function CheckVictory()
 {
     if(score.player1 ==3 || score.player2 == 3)
@@ -446,7 +459,7 @@ function CheckVictory()
             victory = true;
         }
 }
-
+//Refresca los proyectiles y los pone en modo eliminado si estan fuera del canvas
 function UpdateBullets()
 {
     for(var i = 0; i < bullets.length;i++)
@@ -471,6 +484,7 @@ function UpdateBullets()
     }
 }
 
+//Crea las nubes de forma y tiempo aleatorios
 function UpdateClouds(deltaTime)
 {
     if(Math.random() * 1000 < 3)
@@ -492,6 +506,7 @@ function UpdateClouds(deltaTime)
     
 }
 
+//Crea los aviones de forma y tiempo aleatorios
 function UpdateAeroplane(deltaTime)
 {
     if(Math.random() * 1000 < 1)
@@ -513,6 +528,7 @@ function UpdateAeroplane(deltaTime)
     
 }
 
+//Se encarga del dibujado de todos los elementos
 function Draw ()
 {
     // clean the canvas
@@ -574,6 +590,8 @@ function Draw ()
     ctx.fillText('total bodys: ' + world.GetBodyCount(), 12, 40);
 
 }
+
+//Pintado de elementos con nombres autoexplicativos
 
 function DrawBackground ()
 {
@@ -701,6 +719,7 @@ function DrawVictory()
     ctx.restore();
 }
 
+//Realiza un disparo a partir del vehiculo recibido
 function Fire(vehicle, bulletArray)
 {
     if((Date.now() - vehicle.lastShotTime) > vehicle.cadency)
